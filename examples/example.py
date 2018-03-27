@@ -1,4 +1,8 @@
 """Example Case of the Script"""
+
+import sys
+sys.path.insert(0, '..')
+
 from instapy import InstaPy
 
 # if you don't provide arguments, the script will look for INSTA_USER and INSTA_PW in the environment
@@ -34,12 +38,15 @@ session.set_use_clarifai(enabled=True)  # <- will use the one from above
 # uses the clarifai api to check if the image contains nsfw content
 # Check out their homepage to see which tags there are -> won't comment on image
 # (you won't do this on every single image or the 5000 free checks are wasted very fast)
-session.clarifai_check_img_for(['nsfw'], comment=False)  # !if no tags are set, use_clarifai will be False
+# !if no tags are set, use_clarifai will be False
+session.clarifai_check_img_for(['nsfw'], comment=False)
 
 # checks the image for keywords food and lunch, if found, sets the comments possible comments
 # to the given comments
-session.clarifai_check_img_for(['food', 'lunch'], comment=True, comments=['Tasty!', 'Yum!'])
-session.clarifai_check_img_for(['dog', 'cat', 'cute'], comment=True, comments=['Sweet!', 'Cutie!!!'])
+session.clarifai_check_img_for(
+    ['food', 'lunch'], comment=True, comments=['Tasty!', 'Yum!'])
+session.clarifai_check_img_for(
+    ['dog', 'cat', 'cute'], comment=True, comments=['Sweet!', 'Cutie!!!'])
 
 """Like util"""
 # completely ignore liking images from certain users
@@ -66,7 +73,8 @@ session.like_from_image(url='www.instagram.com/image', amount=100)
 # media filtering works here as well
 session.like_by_tags(['#test'], amount=10, media='Video')
 # like 10 random posts of each given username
-session.like_by_users(usernames=['friend1', 'friend2', 'friend3'], amount=10, random=True)
+session.like_by_users(
+    usernames=['friend1', 'friend2', 'friend3'], amount=10, random=True)
 
 """"Like by feed"""
 # likes a given amount of posts on your feed, taking into account settings of commenting, like restrictions etc
@@ -84,30 +92,36 @@ session.like_by_feed(amount=100, randomize=True, unfollow=True, interact=True)
 # The amount is for each account, in this case 30 users will be followed
 # If random is false it will pick in a top-down fashion
 # default sleep_delay=600 (10min) for every 10 user following, in this case sleep for 60 seconds
-session.follow_user_followers(['friend1', 'friend2', 'friend3'], amount=10, random=False, sleep_delay=60)
+session.follow_user_followers(
+    ['friend1', 'friend2', 'friend3'], amount=10, random=False, sleep_delay=60)
 # For 50% of the 30 newly followed, move to their profile
 # and randomly choose 5 pictures to be liked.
 # Take into account the other set options like the comment rate
 # and the filtering for inappropriate words or users
 session.set_user_interact(amount=5, random=True, percentage=50, media='Photo')
-session.follow_user_followers(['friend1', 'friend2', 'friend3'], amount=10, random=False, interact=True)
+session.follow_user_followers(
+    ['friend1', 'friend2', 'friend3'], amount=10, random=False, interact=True)
 # default sleep_delay=600 (10min) for every 10 user following, in this case sleep for 60 seconds
-session.follow_user_followers(['friend1', 'friend2', 'friend3'], amount=10, random=False, interact=True, sleep_delay=60)
+session.follow_user_followers(['friend1', 'friend2', 'friend3'],
+                              amount=10, random=False, interact=True, sleep_delay=60)
 
 # follows the people that a given user is following
 # Same rules as the function above
-session.follow_user_following('friend2', amount=10, random=True, sleep_delay=60)
+session.follow_user_following(
+    'friend2', amount=10, random=True, sleep_delay=60)
 # For 50% of the 30 newly followed, move to their profile
 # and randomly choose 5 pictures to be liked.
 # Take into account the other set options like the comment rate
 # and the filtering for inappropriate words or users
 session.set_user_interact(amount=5, random=True, percentage=50, media='Photo')
-session.follow_user_following(['friend1', 'friend2', 'friend3'], amount=10, random=False, interact=True)
-session.follow_user_following(['friend1', 'friend2', 'friend3'], amount=10, random=False, interact=True, sleep_delay=60)
+session.follow_user_following(
+    ['friend1', 'friend2', 'friend3'], amount=10, random=False, interact=True)
+session.follow_user_following(['friend1', 'friend2', 'friend3'],
+                              amount=10, random=False, interact=True, sleep_delay=60)
 
 
-#Interact with the people that a given user is following
-#set_do_comment, set_do_follow and set_do_like are applicable
+# Interact with the people that a given user is following
+# set_do_comment, set_do_follow and set_do_like are applicable
 session.set_user_interact(amount=5, random=True, percentage=50, media='Photo')
 session.set_do_follow(enabled=False, percentage=70)
 session.set_do_like(enabled=False, percentage=70)
@@ -116,8 +130,8 @@ session.set_do_comment(enabled=True, percentage=80)
 session.interact_user_following(['natgeo'], amount=10, random=True)
 
 
-#Interact with the people that is following a given user
-#set_do_comment, set_do_follow and set_do_like are applicable
+# Interact with the people that is following a given user
+# set_do_comment, set_do_follow and set_do_like are applicable
 session.set_user_interact(amount=5, random=True, percentage=50, media='Photo')
 session.set_do_follow(enabled=False, percentage=70)
 session.set_do_like(enabled=False, percentage=70)
@@ -132,8 +146,8 @@ session.unfollow_users(
 
 
 """Extras"""
-#Reduces the amount of time under sleep to a given percentage
-#It might be useful to test the tool or to increase the time for slower connections (percentage > 100)
+# Reduces the amount of time under sleep to a given percentage
+# It might be useful to test the tool or to increase the time for slower connections (percentage > 100)
 session.set_sleep_reduce(20)
 
 
