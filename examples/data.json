@@ -1,0 +1,38 @@
+[
+    {
+        "username": "user0",
+        "password": "pass0",
+        "likes": 250,
+        "follows": 300,
+        "likesLocation": 150,
+        "location": "215990886/bandeirantes-parana-brazil/",
+        "tags": [
+            "tag0",
+            "tag1",
+            "tag2"
+        ],
+        "tagsBlacked": [
+            "tagblacklist0",
+            "tagblacklist1"
+        ],
+        "usersToFollowFollowers": [
+            "user0",
+            "user1",
+            "user2"
+        ],
+        "friends": [
+            "friend0",
+            "friend1"
+        ]
+    },
+    {
+        "username": "user1",
+        "password": "pass1",
+        "likes": 750,
+        "tags": [
+            "tag0",
+            "tag1",
+            "tag2"
+        ]
+    }
+]
